@@ -3,9 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SJEC Internal Assessment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+    <style>
+        /* Main styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #007bff;
+        }
+        .navbar-brand, .nav-link, .dropdown-item {
+            color: white !important;
+        }
+        .dropdown-menu {
+            background-color: #007bff;
+        }
+        .dropdown-item:hover {
+            background-color: #0056b3;
+        }
+
+        /* Logo styling */
+        .navbar-brand img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        /* Hero section with background image */
+        .hero-section {
+            background: url('assets/sjec.jpg') center center / cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+        }
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 123, 255, 0.5); /* Adds a blue overlay */
+            z-index: 0;
+        }
+        .hero-section h1, .hero-section p, .hero-section a {
+            position: relative;
+            z-index: 1;
+        }
+        .hero-section h1 {
+            font-size: 2.5em;
+        }
+        .content {
+            padding: 40px;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card-title {
+            color: #007bff;
+        }
+        .footer {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .footer {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    width: 100%;
+    position: relative;
+    margin-top: 10px;
+}
+
+.footer .container {
+    max-width: 1200px; /* Ensures consistent spacing */
+    margin: top;
+    padding: 20px;
+}
+
+.footer h5 {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+.footer p, .footer a {
+    font-size: 0.9em;
+    color: white;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.footer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+    </style>
 </head>
 <body>
-    <h1>hijjghf</h1>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="assets/sjec_logo.png" alt="College Logo"> SJEC Assessment Portal
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <h1>Welcome to SJEC Internal Assessment Portal</h1>
+        <p>Efficiently manage and track internal assessments</p>
+    </div>
+
+    <!-- Content Section -->
+    <div class="container content">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Department Portal</h5>
+                        <p class="card-text">Manage student assessments, add and view marks.</p>
+                        <a href="department/departmentlogin.php" class="btn btn-primary">Go to Department</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Faculty Portal</h5>
+                        <p class="card-text">Manage student assessments, add and view marks.</p>
+                        <a href="faculty/facultylogin.php" class="btn btn-primary">Go to Faculty</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Student Portal</h5>
+                        <p class="card-text">View your marks and give feedback on assessments.</p>
+                        <a href="#" class="btn btn-primary">Go to Student</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">HOD Portal</h5>
+                        <p class="card-text">Administer faculty and student accounts, manage assessments.</p>
+                        <a href="#" class="btn btn-primary">Go to HOD</a>
+                    </div>
+                </div>
+            </div>
+            
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h5 class="card-title">Principal</h5>
+                            <p class="card-text">Oversee all faculty and student operations, ensure assessment quality.</p>
+                            <a href="#" class="btn btn-primary">Go to Principal</a>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>&copy; 2024 SJEC Internal Assessment. All rights reserved.</p>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
