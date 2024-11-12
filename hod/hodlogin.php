@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="../assets/sjec_logo.png" rel="icon">
-  <title>Department Login - IA Management System</title>
+  <title>HOD - IA Management System</title>
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="../css/department.css" rel="stylesheet">
@@ -29,57 +29,53 @@
                   <div class="text-center">
                     <img src="../assets/sjec_logo.png" style="width:100px;height:100px">
                     <br><br>
-                    <h1 class="h4 text-gray-900 mb-4">Department Login</h1>
+                    <h1 class="h4 text-gray-900 mb-4">HOD Login</h1>
                   </div>
                   <form method="POST" action="">
                     <div class="form-group">
-                      <input type="email" class="form-control" required name="email" placeholder="Enter Email Address">
+                      <input type="email" class="form-control" required name="hemail" placeholder="Enter Email Address">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control" required name="dpassword" placeholder="Enter Password">
+                      <input type="password" name="fpassword" required class="form-control" placeholder="Enter Password">
                     </div>
-
                     <div class="form-group">
                       <input type="submit" class="btn btn-success w-100" value="Login" name="login" style="background-color: #007bff; color: white;">
                     </div>
                   </form>
 
+                  <!-- PHP Code for Login -->
                   <?php
-session_start();
-include('../config.php');
+                  session_start();
+                  include('../config.php');
 
-if (isset($_POST['login'])) {
-    $email = $_POST['email'];
-    $dpassword = $_POST['dpassword'];
+                  if (isset($_POST['login'])) {
+                      $hemail = $_POST['hemail'];
+                      $fpassword = md5($_POST['fpassword']);
 
-    // Check the credentials in the department table using prepared statements
-    $query = "SELECT * FROM department WHERE email = :email";
-    $stmt = $pdo->prepare($query);
-    $stmt->execute(['email' => $email]);
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                      // Check the credentials in the department table
+                      $query = "SELECT * FROM hod WHERE hemail = '$hemail' AND fpassword = '$fpassword'";
+                      $result = $conn->query($query);
+                      $num = $result->num_rows;
+                      $row = $result->fetch_assoc();
 
-    // If the row exists, verify the password (assuming it's plain text in the database)
-    if ($row && $row['dpassword'] === $dpassword) {
-        // Set session variables
-        $_SESSION['deptid'] = $row['deptid'];
-        $_SESSION['dname'] = $row['dname'];
-        $_SESSION['email'] = $row['email'];
-        $_SESSION['hod_id'] = $row['hod_id'];
+                      if ($num > 0) {
+                          // Set session variables
+                          $_SESSION['hid'] = $row['hid'];
+                          $_SESSION['hname'] = $row['hname'];
+                          $_SESSION['hemail'] = $row['hemail'];
+                          $_SESSION['deptid'] = $row['deptid'];
 
-        // Redirect to the Department Dashboard (change to 'department.html')
-        echo "<script type='text/javascript'>
-        window.location.href = 'department.php';
-        </script>";
-        exit;
-    } else {
-        // Show error message for invalid credentials
-        echo "<div class='alert alert-danger text-center' role='alert'>
-        Invalid Email or Password!
-        </div>";
-    }
-}
-?>
-
+                          // Redirect to the Faculty Dashboard
+                          echo "<script type='text/javascript'>
+                          window.location = ('faculty_dashboard.php');
+                          </script>";
+                      } else {
+                          echo "<div class='alert alert-danger text-center' role='alert'>
+                          Invalid Email or Password!
+                          </div>";
+                      }
+                  }
+                  ?>
                   <div class="text-center">
                     <a href="../index.html">Back to Home</a>
                   </div>

@@ -68,7 +68,7 @@
 
                           // Redirect to the Faculty Dashboard
                           echo "<script type='text/javascript'>
-                          window.location = ('faculty_dashboard.php');
+                          window.location = ('department/department.php');
                           </script>";
                       } else {
                           echo "<div class='alert alert-danger text-center' role='alert'>
