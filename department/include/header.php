@@ -11,12 +11,12 @@
 
     <!-- Sidebar Section -->
     <div id="sidebar" class="sidebar">
-        <div class="module-btn">Faculty Management</div>
-        <div class="module-btn">Student Management</div>
-        <div class="module-btn">Subject Management</div>
-        <div class="module-btn">Attendance</div>
-        <div class="module-btn">Notifications & Announcements</div>
-        <div class="module-btn">Timetable</div>
+        <div class="module-btn"><a href="../department/Management/dpt_faculty.php">Faculty Management</a></div>
+        <div class="module-btn"><a href="../department/Management/dpt_student.php">Student Management</a></div>
+        <div class="module-btn"><a href="../department/Management/dpt_subject.php">Subject Management</a></div>
+        <div class="module-btn"><a href="../department/Management/dpt_attend.php">Attendance</a></div>
+        <div class="module-btn"><a href="../department/Management/dpt_announce.php">Notifications & Announcements</a></div>
+        <div class="module-btn"><a href="../department/Management/dpt_timetable.php">Timetable</a></div>
     </div>
 
     <!-- Top Navigation Bar (Header) -->
