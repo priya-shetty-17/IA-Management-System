@@ -194,5 +194,17 @@
         <p>&copy; 2024 SJEC Internal Assessment. All rights reserved.</p>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Check if the URL has a 'message' query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const message = urlParams.get('message');
+    
+        if (message === 'logged_out') {
+            // Display the logged-out message
+            alert('You have been successfully logged out.');
+        }
+    </script>
+    
 </body>
 </html>
