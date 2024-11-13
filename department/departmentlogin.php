@@ -52,24 +52,22 @@ if (isset($_POST['login'])) {
     $email = $_POST['email'];
     $dpassword = $_POST['dpassword'];
 
-    // Check the credentials in the department table using prepared statements
+    // Prepared statement to prevent SQL injection
     $query = "SELECT * FROM department WHERE email = :email";
     $stmt = $pdo->prepare($query);
     $stmt->execute(['email' => $email]);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // If the row exists, verify the password (assuming it's plain text in the database)
-    if ($row && $row['dpassword'] === $dpassword) {
+    // Verify the password using password_verify if stored using password_hash
+    if ($row && password_verify($dpassword, $row['dpassword'])) {
         // Set session variables
         $_SESSION['deptid'] = $row['deptid'];
         $_SESSION['dname'] = $row['dname'];
         $_SESSION['email'] = $row['email'];
         $_SESSION['hod_id'] = $row['hod_id'];
 
-        // Redirect to the Department Dashboard (change to 'department.html')
-        echo "<script type='text/javascript'>
-        window.location.href = 'department.php';
-        </script>";
+        // Redirect to the Department Dashboard
+        header('Location: department.php');
         exit;
     } else {
         // Show error message for invalid credentials

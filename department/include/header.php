@@ -1,13 +1,22 @@
+<?php
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        $base_url = "/Internal_assessment/department/";
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Department Home Page</title>
-    <link rel="stylesheet" href="../department/home.css">
+    <link rel="stylesheet" href="../css/home.css">
     <script src="../department/js/home.js" defer></script>
 </head>
 <body>
+
 
     <!-- Sidebar Section -->
     <div id="sidebar" class="sidebar">
@@ -27,17 +36,18 @@
             <span></span>
         </div>
         
+        
         <!-- Logo and College Info -->
-        <img src="../department/Images/sjec-logo.png" alt="College Logo" class="logo">
+        <img src="<?php echo $base_url; ?>images/sjec-logo.png" alt="College Logo" class="logo">
         <div class="college-info">
             <h1>St Joseph Engineering College, Vamanjoor - Mangalore</h1>
             <h2>Department of MCA</h2>
         </div>
 
-
+            
         <!-- Profile Menu -->
         <div class="profile-menu">
-            <img src="../department/images/profile.jpg" alt="Profile Icon" class="profile-icon">
+        <img src="<?php echo $base_url; ?>images/profile.jpg" alt="Profile Icon" class="profile-icon">
             <div class="dropdown-content">
                 <p>Welcome, <?php echo htmlspecialchars($_SESSION['dname']); ?></p>
                 <a href="profile.php">View Profile</a>
@@ -47,22 +57,5 @@
         </div>
     </header>
 
-    <!-- Main Content Section -->
-    <div class="main-content">
-        <section class="dashboard">
-            <div class="card student-card">
-                <h3>Students</h3>
-                <p class="count">120</p>
-            </div>
-            <div class="card faculty-card">
-                <h3>Faculty</h3>
-                <p class="count">15</p>
-            </div>
-            <div class="card staff-card">
-                <h3>Staff</h3>
-                <p class="count">8</p>
-            </div>
-        </section>
-    </div>
 </body>
 </html>
