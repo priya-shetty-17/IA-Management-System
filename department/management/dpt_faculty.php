@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faculty Management</title>
-    <link rel="stylesheet" href="../department/css/faculty.css">
+    <link rel="stylesheet" href="/Internal_assessment/department/css/faculty.css">
+
 </head>
 <body>
     <!-- Header -->
     <?php 
-        include '../department/include/header.php';
+        include '../include/header.php';
         ?>
 
     <div class="container">

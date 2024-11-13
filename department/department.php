@@ -11,7 +11,10 @@
 
     <!-- PHP Code to Start Session and Check Login -->
     <?php
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        
 
         // Check if the user is logged in
         if (!isset($_SESSION['deptid'])) {
@@ -27,5 +30,22 @@
         include '../department/include/header.php';
     ?>
 
+            <!-- Main Content Section -->
+    <div class="main-content">
+        <section class="dashboard">
+            <div class="card student-card">
+                <h3>Students</h3>
+                <p class="count">120</p>
+            </div>
+            <div class="card faculty-card">
+                <h3>Faculty</h3>
+                <p class="count">15</p>
+            </div>
+            <div class="card staff-card">
+                <h3>Staff</h3>
+                <p class="count">8</p>
+            </div>
+        </section>
+    </div>
 </body>
 </html>
