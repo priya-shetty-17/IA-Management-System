@@ -11,7 +11,7 @@ if (!isset($_SESSION['deptid'])) {
 $host = 'localhost';
 $user = 'root';
 $password = '';
-$dbname = 'internal assessment';
+$dbname = 'inernal_assessment';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
