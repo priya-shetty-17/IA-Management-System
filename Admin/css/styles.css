@@ -1,0 +1,118 @@
+/* Custom Styles for Faculty Details Form */
+.container {
+    max-width: 600px; /* Limit the width of the form */
+    margin: auto; /* Center the form on the page */
+    padding: 30px; /* Add padding around the form */
+    background-color: #ffffff; /* White background for better contrast */
+    border-radius: 10px; /* More rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Enhanced shadow for depth */
+}
+
+.form-title {
+    color: #007bff; /* Primary color for the heading */
+    margin-bottom: 20px; /* Space below the heading */
+    font-size: 1.5rem; /* Larger font size for the title */
+}
+
+.form-description {
+    margin-bottom: 20px; /* Space below the description */
+    font-size: 1rem; /* Standard font size for description */
+}
+
+.form-group {
+    margin-bottom: 20px; /* Increased space between form groups */
+}
+
+.form-label {
+    font-weight: bold; /* Bold labels for better visibility */
+    color: #333; /* Darker color for labels */
+    display: block; /* Ensure labels are block elements */
+}
+
+.file-upload {
+    display: flex; /* Use flexbox for inline layout */
+    align-items: center; /* Center items vertically */
+    margin-top: 5px; /* Space between label and file input */
+}
+
+.form-control-file {
+    position: relative; /* Positioning for custom styles */
+    overflow: hidden; /* Hide overflow */
+    display: inline-block; /* Inline-block for better layout */
+    width: 100%; /* Full width */
+}
+
+.form-control-file::file-selector-button {
+    display: none; /* Hide the default button */
+}
+
+.upload-button {
+    background-color: #007bff; /* Primary button color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 5px 10px; /* Reduced padding for smaller button */
+    color: white; /* Text color */
+    font-size: 0.875rem; /* Smaller font size for button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Transition for background color */
+}
+
+.upload-button:hover {
+    background-color: #0056b3; /* Darker color on hover */
+}
+
+.form-control-file input[type="file"] {
+    position: absolute; /* Positioning for file input */
+    left: 0;
+    top: 0;
+    opacity: 0; /* Make the input invisible */
+    cursor: pointer; /* Pointer cursor for the invisible input */
+    height: 100%; /* Full height */
+    width: 100%; /* Full width */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Primary button color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners for button */
+    padding: 12px 25px; /* Padding for button */
+    font-size: 1rem; /* Standard font size for button */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker color on hover */
+    cursor: pointer; /* Change cursor on hover */
+}
+
+.form-text {
+    font-size: 0.9rem; /* Slightly smaller text for helper text */
+    color: #6c757d; /* Muted color for helper text */
+}
+
+.dropdown-menu {
+    border: 1px solid #ccc;
+    background-color: white;
+    max-height: 150px;
+    overflow-y: auto;
+    position: absolute;
+    z-index: 1000;
+    display: none; /* Start hidden */
+}
+
+.dropdown-item {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background-color: #f1f1f1;
+}
+
+.form-control {
+    word-wrap: break-word; /* Ensures long words break inside the box */
+    overflow: hidden;      /* Prevents overflow of content outside the input box */
+    white-space: normal;   /* Allows content to wrap on multiple lines */
+    max-width: 100%;       /* Ensures input stays within container's bounds */
+    box-sizing: border-box; /* Ensures padding is accounted for within the width */
+}
