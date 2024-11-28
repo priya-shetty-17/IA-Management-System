@@ -9,7 +9,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>View Departments</title>
+    <title>Departments Details</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -75,6 +75,7 @@
                                 <th scope="col">Department Name</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Password</th>
+                                <th scope="col">Actions</th>
                             </tr>
                         </thead>
                     <tbody>
@@ -85,7 +86,7 @@
                                 die("Connection failed: " . $conn->connect_error);
                             }
 
-                            $sql = "SELECT deptid, dname, email, dpassword FROM department";
+                            $sql = "SELECT deptid, dname, demail, dpassword FROM department";
                             $result = $conn->query($sql);
 
                             if ($result && $result->num_rows > 0) {
@@ -93,8 +94,12 @@
                                     echo "<tr>
                                             <td>{$row['deptid']}</td>
                                             <td>{$row['dname']}</td>
-                                            <td>{$row['email']}</td>
+                                            <td>{$row['demail']}</td>
                                             <td>{$row['dpassword']}</td>
+                                            <td>
+                                                <a href='update_department.php?deptid={$row['deptid']}' class='btn btn-sm btn-primary'>Update</a>
+                                                <a href='delete_department.php?deptid={$row['deptid']}' class='btn btn-sm btn-danger' onclick=\"return confirm('Are you sure you want to delete this department?');\">Remove</a>
+                                            </td>
                                         </tr>";
                                 }
                             } else {

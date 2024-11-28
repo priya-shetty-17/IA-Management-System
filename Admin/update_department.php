@@ -1,7 +1,53 @@
 <?php
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+// Database connection
+$conn = new mysqli('localhost', 'root', '', 'internal_assessment');
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Check if 'deptid' is passed
+if (!isset($_GET['deptid'])) {
+    die("Invalid Request. Department ID is missing.");
+}
+
+$deptid = $_GET['deptid'];
+
+// Fetch existing department details
+$sql = "SELECT * FROM department WHERE deptid = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $deptid);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows == 0) {
+    die("Department not found.");
+}
+
+$department = $result->fetch_assoc();
+
+// Handle form submission
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $dname = $_POST['dname'];
+    $demail = $_POST['demail'];
+    $dpassword = $_POST['dpassword'];
+
+    $update_sql = "UPDATE department SET dname = ?, demail = ?, dpassword = ? WHERE deptid = ?";
+    $update_stmt = $conn->prepare($update_sql);
+    $update_stmt->bind_param("ssss", $dname, $demail, $dpassword, $deptid);
+
+    if ($update_stmt->execute()) {
+        echo "<script>alert('Department updated successfully!'); window.location.href = 'update_department.php';</script>";
+    } else {
+        echo "<script>alert('Failed to update department. Please try again.');</script>";
+    }
+}
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -63,28 +109,24 @@
 
             <!-- Other Elements Start -->
                 <div class="container mt-5">
-                    <h2 class="form-title text-center">Department Details Form</h2>
-                    <p class="form-description text-center text-muted">Please fill out the form below to submit your department details.</p>
-                    <form action="add_department.php" method="POST" enctype="multipart/form-data" class="department-form">
+                    <h2 class="form-title text-center">Edit Department</h2>
+                    
+                    <form action="" method="POST" enctype="multipart/form-data" >
                         <!-- Department Name -->
-                        <div class="form-group">
-                            <label for="dname" class="form-label">Department Name:</label>
-                            <input type="text" class="form-control" id="dname" name="dname" placeholder="Enter department name" required>
+                        <div class="mb-3">
+                            <label for="dname" class="form-label">Department Name</label>
+                            <input type="text" class="form-control" id="dname" name="dname" value="<?php echo htmlspecialchars($department['dname']); ?>" required>
                         </div>
-
-                        <!-- Email -->
-                        <div class="form-group">
-                            <label for="email" class="form-label">Email:</label>
-                            <input type="email" class="form-control" id="demail" name="demail" placeholder="Enter department email address" required>
+                        <div class="mb-3">
+                            <label for="demail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="demail" name="demail" value="<?php echo htmlspecialchars($department['demail']); ?>" required>
                         </div>
-
-                        <!-- Password -->
-                        <div class="form-group">
-                            <label for="dpassword" class="form-label">Password:</label>
-                            <input type="password" class="form-control" id="dpassword" name="dpassword" placeholder="Create a secure password" required>
-                            <small class="form-text text-muted">Your password should be at least 8 characters long.</small>
+                        <div class="mb-3">
+                            <label for="dpassword" class="form-label">Password</label>
+                            <input type="text" class="form-control" id="dpassword" name="dpassword" value="<?php echo htmlspecialchars($department['dpassword']); ?>" required>
                         </div>
-                            <button  type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                        <a href="view_department.php" class="btn btn-secondary">Cancel</a>
                     </form>
                 </div>
 
@@ -116,39 +158,3 @@
     </body>
 
 </html>
-
-<?php
-// Include the database connection file
-require '../config.php';
-
-// Check if form is submitted
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Retrieve form data and sanitize
-    $dname = htmlspecialchars($_POST['dname'], ENT_QUOTES, 'UTF-8');
-    $email = htmlspecialchars($_POST['demail'], ENT_QUOTES, 'UTF-8');
-    $dpassword = htmlspecialchars($_POST['dpassword'], ENT_QUOTES, 'UTF-8');
-
-    if (empty($dname) || empty($email) || empty($dpassword)) {
-        echo "All fields are required!";
-    } else {
-        // SQL query to insert data
-        $sql = "INSERT INTO department (dname, demail, dpassword) VALUES (:dname, :demail, :dpassword)";
-
-        try {
-            // Prepare and execute the query
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute([
-                ':dname' => $dname,
-                ':demail' => $demail,
-                ':dpassword' => $dpassword
-            ]);
-
-            // Success message
-            echo "New department added successfully.";
-        } catch (PDOException $e) {
-            // Handle any errors
-            echo "Error: " . $e->getMessage();
-        }
-    }
-}
-?>

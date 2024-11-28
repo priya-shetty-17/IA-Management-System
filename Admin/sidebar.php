@@ -32,7 +32,7 @@ $currentPage = basename($_SERVER['PHP_SELF']); // Get the current file name
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="add_department.php" class="dropdown-item <?php echo $currentPage == 'add_department.php' ? 'active' : ''; ?>">Add Department</a>
                     <a href="view_department.php" class="dropdown-item <?php echo $currentPage == 'view_department.php' ? 'active' : ''; ?>">View Department</a>
-                    <a href="remove_department.php" class="dropdown-item <?php echo $currentPage == 'remove_department.php' ? 'active' : ''; ?>">Remove Department</a>
+                    <!-- <a href="update_department.php" class="dropdown-item <?php echo $currentPage == 'update_department.php' ? 'active' : ''; ?>">Update Department</a> -->
                 </div>
             </div>
 
@@ -47,9 +47,9 @@ $currentPage = basename($_SERVER['PHP_SELF']); // Get the current file name
                 </div>
             </div>
 
-            <a href="roles.php" class="nav-item nav-link <?php echo $currentPage == 'roles.php' ? 'active' : ''; ?>">
+            <!-- <a href="roles.php" class="nav-item nav-link <?php echo $currentPage == 'roles.php' ? 'active' : ''; ?>">
                 <i class="fa fa-th me-2"></i>Roles
-            </a>
+            </a> -->
 
                 <!-- 
                     <div class="nav-item dropdown">

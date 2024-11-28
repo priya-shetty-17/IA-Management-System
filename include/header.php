@@ -14,7 +14,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <button id="closeSidebar" class="btn btn-light" style="position: absolute; top: 15px; right: 15px;">&larr;</button>
     <nav class="sidebar-content">
         <a href="../department/dpt_faculty.php">Faculty Management</a>
-        <a href="../department/Management/dpt_student.php">Student Management</a>
+        <a href="../department/dpt_student.php">Student Management</a>
         <a href="../department/Management/dpt_subject.php">Subject Management</a>
         <a href="../department/Management/dpt_attend.php">Attendance</a>
         <a href="../department/Management/dpt_announce.php">Notifications & Announcements</a>

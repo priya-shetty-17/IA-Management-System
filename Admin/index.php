@@ -29,6 +29,25 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <style>
+        .dashboard-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .dashboard-card h5 {
+            color: #0d6efd;
+            font-weight: 600;
+        }
+
+        .dashboard-card span {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #343a40;
+        }
+    </style>
 </head>
 
 <body>
@@ -58,41 +77,36 @@
 
             <!-- Subject -->
 
-            <div class="container-fluid pt-4 px-4">
-                <div class="row g-4">
-
-                    <div class="col-sm-12 col-xl-4">
-                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <div class="ms-3">
-                                <p class="mb-2">Department: <strong>MCA</strong></p>
-                                <h6 class="mb-0">Approved: <span class="text-success">10</span></h6>
-                                <h6 class="mb-0">Rejected: <span class="text-danger">2</span></h6>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-12 col-xl-4">
-                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <div class="ms-3">
-                                <p class="mb-2">Department: <strong>MBA</strong></p>
-                                <h6 class="mb-0">Approved: <span class="text-success">10</span></h6>
-                                <h6 class="mb-0">Rejected: <span class="text-danger">2</span></h6>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-12 col-xl-4">
-                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <div class="ms-3">
-                                <p class="mb-2">Department: <strong>Mech</strong></p>
-                                <h6 class="mb-0">Approved: <span class="text-success">10</span></h6>
-                                <h6 class="mb-0">Rejected: <span class="text-danger">2</span></h6>
-                            </div>
-                        </div>
-                    </div>
-
+            <div class="container-fluid py-4">
+        <div class="row g-4">
+            <!-- Card for Department 1 -->
+            <div class="col-md-4">
+                <div class="dashboard-card">
+                    <h5>Department: MCA</h5>
+                    <p class="mb-0">IA Marks Updated:</p>
+                    <span>25</span>
                 </div>
             </div>
+
+            <!-- Card for Department 2 -->
+            <div class="col-md-4">
+                <div class="dashboard-card">
+                    <h5>Department: MBA</h5>
+                    <p class="mb-0">IA Marks Updated:</p>
+                    <span>30</span>
+                </div>
+            </div>
+
+            <!-- Card for Department 3 -->
+            <div class="col-md-4">
+                <div class="dashboard-card">
+                    <h5>Department: Mechanical</h5>
+                    <p class="mb-0">IA Marks Updated:</p>
+                    <span>20</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
              <!-- Subject End -->
 

@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['deptid'])) {
-    header("Location: department/departmentlogin.php");
+    header("Location: ../department/dpt_student.php");
     exit();
 }
 

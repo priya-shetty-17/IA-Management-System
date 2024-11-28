@@ -9,13 +9,13 @@ error_reporting(E_ALL);
 
 <head>
     <meta charset="utf-8">
-    <title>DASHMIN - Bootstrap Admin Template</title>
+    <title>View Faculty</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="img/SJECLogo.png" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -66,6 +66,7 @@ error_reporting(E_ALL);
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
+                                        <th scope="col">Profile</th>
                                         <th scope="col">Faculty Id</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Email</th>
@@ -76,7 +77,7 @@ error_reporting(E_ALL);
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php
+                                <?php
                                     // Database connection
                                     $conn = new mysqli('localhost', 'root', '', 'internal_assessment');
 
@@ -87,13 +88,14 @@ error_reporting(E_ALL);
                                     // SQL query to fetch faculty details along with department name
                                     $sql = "
                                         SELECT 
+                                            faculty.fprofile,
                                             faculty.facid, 
                                             faculty.fname, 
                                             faculty.femail, 
                                             department.dname, 
                                             faculty.fphone, 
                                             faculty.fdob, 
-                                            faculty.fpassword 
+                                            faculty.fpass 
                                         FROM 
                                             faculty
                                         LEFT JOIN 
@@ -106,21 +108,23 @@ error_reporting(E_ALL);
                                     if ($result && $result->num_rows > 0) {
                                         while ($row = $result->fetch_assoc()) {
                                             echo "<tr>
+                                                    <td><img src='data:image/jpeg;base64," . base64_encode($row['fprofile']) . "' alt='Profile Image' width='50'></td>
                                                     <td>" . htmlspecialchars($row['facid']) . "</td>
                                                     <td>" . htmlspecialchars($row['fname']) . "</td>
                                                     <td>" . htmlspecialchars($row['femail']) . "</td>
                                                     <td>" . htmlspecialchars($row['dname']) . "</td>
                                                     <td>" . htmlspecialchars($row['fphone']) . "</td>
                                                     <td>" . htmlspecialchars($row['fdob']) . "</td>
-                                                    <td>" . htmlspecialchars($row['fpassword']) . "</td>
+                                                    <td>" . htmlspecialchars($row['fpass']) . "</td>
                                                 </tr>";
                                         }
                                     } else {
-                                        echo "<tr><td colspan='7' class='text-center'>No records found</td></tr>";
+                                        echo "<tr><td colspan='8' class='text-center'>No records found</td></tr>";
                                     }
 
                                     $conn->close();
                                     ?>
+
                                 </tbody>
                             </table>
                         </div>
