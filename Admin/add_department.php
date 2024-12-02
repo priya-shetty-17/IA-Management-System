@@ -2,6 +2,46 @@
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
+
+// Include the database connection file
+require '../config.php';
+
+// Check if form is submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Retrieve and sanitize form data
+    $dname = htmlspecialchars($_POST['dname'], ENT_QUOTES, 'UTF-8');
+    $email = htmlspecialchars($_POST['demail'], ENT_QUOTES, 'UTF-8');
+    $dpassword = htmlspecialchars($_POST['dpassword'], ENT_QUOTES, 'UTF-8');
+
+    // Validate that all fields are filled
+    if (empty($dname) || empty($email) || empty($dpassword)) {
+        $message = "All fields are required!";
+    } else {
+        // Set the role value to 2 (hidden)
+        $role = 2;
+
+        // SQL query to insert data into the table
+        $sql = "INSERT INTO department (dname, demail, dpassword, role) 
+                VALUES (:dname, :demail, :dpassword, :role)";
+
+        try {
+            // Prepare and execute the query
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
+                ':dname' => $dname,
+                ':demail' => $email,
+                ':dpassword' => $dpassword,
+                ':role' => $role
+            ]);
+
+            // Success message
+            $message = "New department added successfully.";
+        } catch (PDOException $e) {
+            // Handle any errors
+            $message = "Error: " . $e->getMessage();
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -116,39 +156,3 @@
     </body>
 
 </html>
-
-<?php
-// Include the database connection file
-require '../config.php';
-
-// Check if form is submitted
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Retrieve form data and sanitize
-    $dname = htmlspecialchars($_POST['dname'], ENT_QUOTES, 'UTF-8');
-    $email = htmlspecialchars($_POST['demail'], ENT_QUOTES, 'UTF-8');
-    $dpassword = htmlspecialchars($_POST['dpassword'], ENT_QUOTES, 'UTF-8');
-
-    if (empty($dname) || empty($email) || empty($dpassword)) {
-        echo "All fields are required!";
-    } else {
-        // SQL query to insert data
-        $sql = "INSERT INTO department (dname, demail, dpassword) VALUES (:dname, :demail, :dpassword)";
-
-        try {
-            // Prepare and execute the query
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute([
-                ':dname' => $dname,
-                ':demail' => $demail,
-                ':dpassword' => $dpassword
-            ]);
-
-            // Success message
-            echo "New department added successfully.";
-        } catch (PDOException $e) {
-            // Handle any errors
-            echo "Error: " . $e->getMessage();
-        }
-    }
-}
-?>

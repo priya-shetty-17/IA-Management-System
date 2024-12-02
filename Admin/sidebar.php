@@ -47,9 +47,9 @@ $currentPage = basename($_SERVER['PHP_SELF']); // Get the current file name
                 </div>
             </div>
 
-            <!-- <a href="roles.php" class="nav-item nav-link <?php echo $currentPage == 'roles.php' ? 'active' : ''; ?>">
+            <a href="roles.php" class="nav-item nav-link <?php echo $currentPage == 'roles.php' ? 'active' : ''; ?>">
                 <i class="fa fa-th me-2"></i>Roles
-            </a> -->
+            </a>
 
                 <!-- 
                     <div class="nav-item dropdown">
