@@ -3,7 +3,7 @@
 session_start();
 
 if (!isset($_SESSION['deptid'])) {
-    header("Location: ../login.php");
+    header("Location: ../add_student.php");
     exit();
 }
 

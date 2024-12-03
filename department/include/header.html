@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Home Page</title>
+    <link rel="stylesheet" href="home.css">
+    <script src="js/home.js" defer></script>
+</head>
+<body>
+
+    <!-- Sidebar Section -->
+    <div id="sidebar" class="sidebar">
+        <div class="module-btn">Faculty Management</div>
+        <div class="module-btn">Student Management</div>
+        <div class="module-btn">Subject Management</div>
+        <div class="module-btn">Attendance</div>
+        <div class="module-btn">Notifications & Announcements</div>
+        <div class="module-btn">Timetable</div>
+    </div>
+
+    <!-- Top Navigation Bar (Header) -->
+    <header class="nav-bar">
+        <div class="hamburger" onclick="toggleSidebar()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <!-- Logo and College Info -->
+        <img src="Images/sjec-logo.png" alt="College Logo" class="logo">
+        <div class="college-info">
+            <h1>St Joseph Engineering College, Vamanjoor - Mangalore</h1>
+            <h2>Department of MCA</h2>
+        </div>
+
+        <!-- Profile Menu -->
+        <div class="profile-menu">
+            <img src="images/profile.jpg" alt="Profile Icon" class="profile-icon">
+            <div class="dropdown-content">
+                <p>Welcome, [Username]</p>
+                <a href="profile.php">View Profile</a>
+                <a href="settings.php">Settings</a>
+                <a href="logout.php">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <div class="main-content">
+        <section class="dashboard">
+            <div class="card student-card">
+                <h3>Students</h3>
+                <p class="count">120</p>
+            </div>
+            <div class="card faculty-card">
+                <h3>Faculty</h3>
+                <p class="count">15</p>
+            </div>
+            <div class="card staff-card">
+                <h3>Staff</h3>
+                <p class="count">8</p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

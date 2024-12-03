@@ -94,7 +94,7 @@ if (isset($_POST['login'])) {
                         header('Location: admin/index.php');
                         break;
                     case 2:
-                        header('Location: dpt/dpt.php');
+                        header('Location: department/index.php');
                         break;
                       
                     case 3:
