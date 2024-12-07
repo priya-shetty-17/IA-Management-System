@@ -49,6 +49,7 @@ if (isset($_SESSION['email'])) {
                     <a href="view_faculty.php" class="dropdown-item <?php echo $currentPage == 'view_faculty.php' ? 'active' : ''; ?>">View Faculty</a>
                     <a href="view_faculty.php" class="dropdown-item <?php echo $currentPage == 'view_faculty.php' ? 'active' : ''; ?>">Assigned Subjects</a>
                 </div>
+                
             </div> 
 
             <div class="nav-item dropdown">

@@ -1,0 +1,7 @@
+{
+    "name": "vendor/ia-management-system",
+    "description": "A description of your project",
+    "require": {
+        "symfony/polyfill-mbstring": "^1.0"
+    }
+}

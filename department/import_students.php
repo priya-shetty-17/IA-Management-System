@@ -16,7 +16,8 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Check if the form is submitted
+$message = "";
+
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['excel_file'])) {
     $uploadDir = './uploads/';
@@ -58,23 +59,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['excel_file'])) {
                 $stmt->bind_param("issssisi", $sid, $sname, $email, $dob, $usn, $phone, $deptid, $year_of_study);
 
                 if (!$stmt->execute()) {
-                    echo "Error inserting row: " . $stmt->error . "<br>";
+                    $message .= "Error inserting row: " . $stmt->error . "<br>";
                 }
             }
 
-            echo "Data imported successfully!";
+            $message .= "Data imported successfully!";
         } catch (Exception $e) {
-            echo "Error loading file: " . $e->getMessage();
+            $message .= "Error loading file: " . $e->getMessage();
         }
     } else {
-        echo "File upload failed!";
+        $message .= "File upload failed!";
     }
-} else {
-    echo "No file uploaded.";
 }
+
+// Fetch data to display
+$students = [];
+$result = $conn->query("SELECT * FROM student");
+if ($result && $result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $students[] = $row;
+    }
+}
+
 // Close the connection
 $conn->close();
 ?>
+
 
 <!-- HTML Form -->
 <!DOCTYPE html>
@@ -83,12 +93,82 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Excel File</title>
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-    <form action="" method="post" enctype="multipart/form-data">
-        <label for="excel_file">Select Excel File:</label>
-        <input type="file" name="excel_file" id="excel_file" required>
-        <button type="submit">Upload and Import</button>
-    </form>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-sm-12 col-xl-6">
+                <div class="bg-light rounded h-100 p-4">
+                    <h6 class="mb-4">File Input</h6>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="excel_file" class="form-label">Select Excel File</label>
+                            <input class="form-control" type="file" name="excel_file" id="excel_file" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Upload and Import</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="bg-light rounded h-100 p-4">
+                    <h6 class="mb-4">Imported Student Data</h6>
+                    <p><?php echo $message; ?></p>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>SID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>DOB</th>
+                                <th>USN</th>
+                                <th>Phone</th>
+                                <th>Department ID</th>
+                                <th>Year of Study</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php if (!empty($students)): ?>
+                                <?php foreach ($students as $student): ?>
+                                    <tr>
+                                        <td><?php echo htmlspecialchars($student['sid']); ?></td>
+                                        <td><?php echo htmlspecialchars($student['sname']); ?></td>
+                                        <td><?php echo htmlspecialchars($student['semail']); ?></td>
+                                        <td><?php echo htmlspecialchars($student['dob']); ?></td>
+                                        <td><?php echo htmlspecialchars($student['usn']); ?></td>
+                                        <td><?php echo htmlspecialchars($student['phone']); ?></td>
+                                        <td><?php echo htmlspecialchars($student['deptid']); ?></td>
+                                        <td><?php echo htmlspecialchars($student['year_of_study']); ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <tr>
+                                    <td colspan="8">No data available.</td>
+                                </tr>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+

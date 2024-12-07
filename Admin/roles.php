@@ -151,6 +151,34 @@
                                     </div>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>Add Student</td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="hodToggle1">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="deptToggle1">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="facToggle1">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="stuToggle1">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="priToggle1">
+                                    </div>
+                                </td>
+                            </tr>
                             <!-- Repeat rows as needed -->
 
                         </tbody>
