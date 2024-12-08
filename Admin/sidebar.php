@@ -43,7 +43,7 @@ $currentPage = basename($_SERVER['PHP_SELF']); // Get the current file name
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="add_faculty.php" class="dropdown-item <?php echo $currentPage == 'add_faculty.php' ? 'active' : ''; ?>">Add Faculty</a>
                     <a href="view_faculty.php" class="dropdown-item <?php echo $currentPage == 'view_faculty.php' ? 'active' : ''; ?>">View Faculty</a>
-                    <a href="remove_faculty.php" class="dropdown-item <?php echo $currentPage == 'remove_faculty.php' ? 'active' : ''; ?>">Remove Faculty</a>
+                    <!-- <a href="remove_faculty.php" class="dropdown-item <?php echo $currentPage == 'remove_faculty.php' ? 'active' : ''; ?>">Remove Faculty</a> -->
                 </div>
             </div>
 
