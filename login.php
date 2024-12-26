@@ -101,7 +101,7 @@ if (isset($_POST['login'])) {
                         header('Location: fac.html');
                         break;
                     case 4:
-                        header('Location: hod.html');
+                        header('Location: hod/hodhome.php');
                         break;
                     case 5:
                         header('Location: princi.html');
