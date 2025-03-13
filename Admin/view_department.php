@@ -74,7 +74,7 @@
                                 <th scope="col">Department ID</th>
                                 <th scope="col">Department Name</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Password</th>
+                                
                                 <th scope="col">Actions</th>
                             </tr>
                         </thead>
@@ -86,7 +86,7 @@
                                 die("Connection failed: " . $conn->connect_error);
                             }
 
-                            $sql = "SELECT deptid, dname, demail, dpassword FROM department";
+                            $sql = "SELECT deptid, dname, demail FROM department";
                             $result = $conn->query($sql);
 
                             if ($result && $result->num_rows > 0) {
@@ -95,7 +95,7 @@
                                             <td>{$row['deptid']}</td>
                                             <td>{$row['dname']}</td>
                                             <td>{$row['demail']}</td>
-                                            <td>{$row['dpassword']}</td>
+                            
                                             <td>
                                                 <a href='update_department.php?deptid={$row['deptid']}' class='btn btn-sm btn-primary'>Update</a>
                                                 <a href='delete_department.php?deptid={$row['deptid']}' class='btn btn-sm btn-danger' onclick=\"return confirm('Are you sure you want to delete this department?');\">Remove</a>
@@ -103,7 +103,7 @@
                                         </tr>";
                                 }
                             } else {
-                                echo "<tr><td colspan='4' class='text-center'>No records found</td></tr>";
+                                echo "<tr><td colspan='3' class='text-center'>No records found</td></tr>";
                             }
                             $conn->close();
                             ?>

@@ -67,13 +67,13 @@ error_reporting(E_ALL);
                                 <thead>
                                     <tr>
                                         <th scope="col">Profile</th>
-                                        <th scope="col">Faculty Id</th>
+                                      
                                         <th scope="col">Name</th>
                                         <th scope="col">Email</th>
                                         <th scope="col">Department</th>
                                         <th scope="col">Phone Number</th>
                                         <th scope="col">Date Of Birth</th>
-                                        <th scope="col">Password</th>
+                                       
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -89,13 +89,13 @@ error_reporting(E_ALL);
                                     $sql = "
                                         SELECT 
                                             faculty.fprofile,
-                                            faculty.facid, 
+                                        
                                             faculty.fname, 
                                             faculty.femail, 
                                             department.dname, 
                                             faculty.fphone, 
-                                            faculty.fdob, 
-                                            faculty.fpass 
+                                            faculty.fdob 
+                                             
                                         FROM 
                                             faculty
                                         LEFT JOIN 
@@ -109,17 +109,17 @@ error_reporting(E_ALL);
                                         while ($row = $result->fetch_assoc()) {
                                             echo "<tr>
                                                     <td><img src='data:image/jpeg;base64," . base64_encode($row['fprofile']) . "' alt='Profile Image' width='50'></td>
-                                                    <td>" . htmlspecialchars($row['facid']) . "</td>
+                                                    
                                                     <td>" . htmlspecialchars($row['fname']) . "</td>
                                                     <td>" . htmlspecialchars($row['femail']) . "</td>
                                                     <td>" . htmlspecialchars($row['dname']) . "</td>
                                                     <td>" . htmlspecialchars($row['fphone']) . "</td>
                                                     <td>" . htmlspecialchars($row['fdob']) . "</td>
-                                                    <td>" . htmlspecialchars($row['fpass']) . "</td>
+                                                    
                                                 </tr>";
                                         }
                                     } else {
-                                        echo "<tr><td colspan='8' class='text-center'>No records found</td></tr>";
+                                        echo "<tr><td colspan='6' class='text-center'>No records found</td></tr>";
                                     }
 
                                     $conn->close();

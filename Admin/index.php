@@ -76,77 +76,87 @@
             <!-- Navbar End -->
 
             <!-- Subject -->
-
-            
             <div class="container-fluid py-4">
     <div class="row g-4" id="department-cards">
-        <!-- Cards for Departments -->
-        <div class="col-md-4" onclick="loadSubjects(1)">
-            <div class="dashboard-card">
+        <div class="col-md-4">
+            <div class="dashboard-card" onclick="loadSubjects(1001)">
                 <h5>Department: MCA</h5>
-                <p class="mb-0">IA Marks Updated:</p>
-                <span>25</span>
             </div>
         </div>
-        <div class="col-md-4" onclick="loadSubjects(2)">
-            <div class="dashboard-card">
+        <div class="col-md-4">
+            <div class="dashboard-card" onclick="loadSubjects(1002)">
                 <h5>Department: MBA</h5>
-                <p class="mb-0">IA Marks Updated:</p>
-                <span>30</span>
             </div>
         </div>
-        <div class="col-md-4" onclick="loadSubjects(3)">
-            <div class="dashboard-card">
+        <div class="col-md-4">
+            <div class="dashboard-card" onclick="loadSubjects(1006)">
                 <h5>Department: Mechanical</h5>
-                <p class="mb-0">IA Marks Updated:</p>
-                <span>20</span>
             </div>
         </div>
     </div>
 
-    <!-- Subject Details -->
     <div class="mt-4" id="subjects-container">
         <h4>Subjects</h4>
-        <div id="subjects-list" class="row g-3"></div>
     </div>
 </div>
 
 
 
-             <!-- Subject End -->
-             <script>
+<!-- Subject End -->
+<script>
     function loadSubjects(departmentId) {
-        const subjectsList = document.getElementById('subjects-list');
-        subjectsList.innerHTML = '<p>Loading subjects...</p>'; // Loading indicator
+        const subjectsContainer = document.getElementById('subjects-container');
+        subjectsContainer.innerHTML = '<p>Loading subjects...</p>'; // Show loading
 
         fetch(`getSubjects.php?deptid=${departmentId}`)
             .then(response => response.json())
             .then(data => {
-                if (data.status === 'success') {
-                    subjectsList.innerHTML = ''; // Clear previous content
+                if (data.status === 'success' && Object.keys(data.subjects).length > 0) {
+                    subjectsContainer.innerHTML = ''; // Clear previous subjects
 
-                    // Populate subjects dynamically
-                    data.subjects.forEach(subject => {
-                        const subjectCard = document.createElement('div');
-                        subjectCard.classList.add('col-md-4');
-                        subjectCard.innerHTML = `
-                            <div class="dashboard-card">
-                                <h5>${subject.name}</h5>
-                                <p class="mb-0">Marks Updated:</p>
-                                <span>${subject.marks_updated}</span>
-                            </div>`;
-                        subjectsList.appendChild(subjectCard);
+                    Object.keys(data.subjects).forEach(semester => {
+                        const semesterDiv = document.createElement('div');
+                        semesterDiv.classList.add('mb-4'); // Margin bottom for spacing
+                        semesterDiv.innerHTML = `
+                            <h5>Semester ${semester}</h5>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Subject Name</th>
+                                        <th>Code</th>
+                                        <th>Credits</th>
+                                        <th>Total Hours</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="semester-${semester}"></tbody>
+                            </table>
+                        `;
+
+                        subjectsContainer.appendChild(semesterDiv);
+
+                        const semesterTable = document.getElementById(`semester-${semester}`);
+                        data.subjects[semester].forEach(subject => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                                <td>${subject.name}</td>
+                                <td>${subject.code}</td>
+                                <td>${subject.credit}</td>
+                                <td>${subject.total_hour}</td>
+                            `;
+                            semesterTable.appendChild(row);
+                        });
                     });
                 } else {
-                    subjectsList.innerHTML = `<p>${data.message}</p>`;
+                    subjectsContainer.innerHTML = '<p>No subjects found for this department.</p>';
                 }
             })
             .catch(error => {
                 console.error('Error fetching subjects:', error);
-                subjectsList.innerHTML = '<p>Failed to load subjects. Please try again.</p>';
+                subjectsContainer.innerHTML = '<p>Failed to load subjects. Please try again.</p>';
             });
     }
 </script>
+
 
            
         </div>

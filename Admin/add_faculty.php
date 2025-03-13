@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Admin Template</title>
+    <title>Add Faculty</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="img/SJECLogo.png" rel="icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -113,6 +113,16 @@
     <?php
     include '../config.php';
 
+    try {
+        // Fetch departments from the database
+        $sql = "SELECT deptid, dname FROM department";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        $departments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (Exception $e) {
+        die("Error fetching departments: " . $e->getMessage());
+    }
+    
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         try {
             $name = htmlspecialchars($_POST['fname']);
