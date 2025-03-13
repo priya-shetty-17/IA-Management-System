@@ -68,7 +68,7 @@ if (isset($_SESSION['email'])) {
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="add_subject.php" class="dropdown-item <?php echo $currentPage == 'add_subject.php' ? 'active' : ''; ?>">Add Subjects</a>
                     <a href="view_subject.php" class="dropdown-item <?php echo $currentPage == 'view_subject.php' ? 'active' : ''; ?>">View Subjects</a>
-                    <a href="view_department.php" class="dropdown-item <?php echo $currentPage == 'view_department.php' ? 'active' : ''; ?>">Assign Subjects</a>
+                    <a href="assign_subject.php" class="dropdown-item <?php echo $currentPage == 'assign_subject.php' ? 'active' : ''; ?>">Assign Subjects</a>
                 </div>
             </div>
 

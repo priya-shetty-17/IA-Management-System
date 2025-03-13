@@ -45,20 +45,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['excel_file'])) {
                 }
 
                 // Assign values from columns
-                $sid = $row[0];
+                
                 $sname = $row[1];
                 $email = $row[2];
-                $dob = $row[3];
+                $dob = $row[3]; // Assuming the format is 'YYYY-MM-DD'
                 $usn = $row[4];
                 $phone = $row[5];
                 $deptid = $row[6];
-                $year_of_study = $row[7];
+                $year_of_study = $row[7]; // This might need modification if it's a DATE
 
-                // Insert data into the database
-                $stmt = $conn->prepare("INSERT INTO student (sid, sname, email, dob, usn, phone, deptid, year_of_study) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-                $stmt->bind_param("issssisi", $sid, $sname, $email, $dob, $usn, $phone, $deptid, $year_of_study);
+                 // Insert data into the database
+                 $stmt = $conn->prepare("INSERT INTO student (sname, semail, dob, usn, phone, deptid, year_of_study) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                 $stmt->bind_param("sssssis", $sname, $semail, $dob, $usn, $phone, $deptid, $year_of_study);
 
-                if (!$stmt->execute()) {
+                 if (!$stmt->execute()) {
                     $message .= "Error inserting row: " . $stmt->error . "<br>";
                 }
             }
@@ -128,39 +128,44 @@ $conn->close();
                     <h6 class="mb-4">Imported Student Data</h6>
                     <p><?php echo $message; ?></p>
                     <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>SID</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>DOB</th>
-                                <th>USN</th>
-                                <th>Phone</th>
-                                <th>Department ID</th>
-                                <th>Year of Study</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php if (!empty($students)): ?>
-                                <?php foreach ($students as $student): ?>
-                                    <tr>
-                                        <td><?php echo htmlspecialchars($student['sid']); ?></td>
-                                        <td><?php echo htmlspecialchars($student['sname']); ?></td>
-                                        <td><?php echo htmlspecialchars($student['semail']); ?></td>
-                                        <td><?php echo htmlspecialchars($student['dob']); ?></td>
-                                        <td><?php echo htmlspecialchars($student['usn']); ?></td>
-                                        <td><?php echo htmlspecialchars($student['phone']); ?></td>
-                                        <td><?php echo htmlspecialchars($student['deptid']); ?></td>
-                                        <td><?php echo htmlspecialchars($student['year_of_study']); ?></td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            <?php else: ?>
-                                <tr>
-                                    <td colspan="8">No data available.</td>
-                                </tr>
-                            <?php endif; ?>
-                        </tbody>
-                    </table>
+    <thead>
+        <tr>
+            <th>SID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>DOB</th>
+            <th>USN</th>
+            <th>Phone</th>
+            <th>Department ID</th>
+            <th>Year of Study</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if (!empty($students)): ?>
+            <?php foreach ($students as $student): ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($student['sid']); ?></td>
+                    <td><?php echo htmlspecialchars($student['sname']); ?></td>
+                    <td><?php echo htmlspecialchars($student['semail']); ?></td>
+                    <td><?php echo htmlspecialchars($student['dob']); ?></td>
+                    <td><?php echo htmlspecialchars($student['usn']); ?></td>
+                    <td><?php echo htmlspecialchars($student['phone']); ?></td>
+                    <td><?php echo htmlspecialchars($student['deptid']); ?></td>
+                    <td>
+                        <?php 
+                        // Format year_of_study if needed
+                        echo htmlspecialchars(date('Y', strtotime($student['year_of_study'])));
+                        ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <tr>
+                <td colspan="8">No data available.</td>
+            </tr>
+        <?php endif; ?>
+    </tbody>
+</table>
                 </div>
             </div>
         </div>

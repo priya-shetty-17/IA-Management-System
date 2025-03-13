@@ -3,13 +3,12 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// // Check if the user is logged in
- if (!isset($_SESSION['email'])) {
-     header("Location: ../login.php");
-   exit();
- }
+// Check if the user is logged in
+if (!isset($_SESSION['email'])) {
+    header("Location: ../login.php");
+    exit();
+}
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -54,60 +53,45 @@ if (session_status() === PHP_SESSION_NONE) {
         </div>
         <!-- Spinner End -->
 
-
         <!-- Sidebar Start -->
-       
-        <?php include 'sidebar.php';?>
+        <?php include 'sidebar.php'; ?>
         <!-- Sidebar End -->
-
 
         <!-- Content Start -->
         <div class="content">
             <!-- Navbar Start -->
-
-           <?php include 'navbar.php';?>
-           
+            <?php include 'navbar.php'; ?>
             <!-- Navbar End -->
 
-            <!-- Subject -->
-
             <div class="main-content">
-        <main class="p-4">
-            <div class="container">
-                <h3>Welcome to the Department Dashboard</h3>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Students</h5>
-                                <p class="card-text">120</p>
+                <main class="p-4">
+                    <div class="container">
+                        <h3>Welcome to the Department Dashboard</h3>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Students</h5>
+                                        <p class="card-text">120</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Faculty</h5>
+                                        <p class="card-text">15</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Faculty</h5>
-                                <p class="card-text">15</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">Staff</h5>
-                                <p class="card-text">8</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </main>
             </div>
-        </main>
-    </div>
 
-
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+            <!-- Back to Top -->
+            <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+        </div>
     </div>
 
     <!-- JavaScript Libraries -->

@@ -73,9 +73,15 @@ if (isset($_GET['delete'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Subjects</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="css/view_sub.css"> <!-- Add your custom styles here -->
 </head>
 <body>
+    <!-- Back Arrow Button -->
+    <a href="index.php" class="btn btn-link position-absolute" style="top: 20px; left: 20px; z-index: 9999;">
+        <i class="bi bi-arrow-left-circle-fill" style="font-size: 30px;"></i>
+    </a>
+
     <div class="container mt-5">
         <h2 class="text-primary">View Subjects</h2>
         <?php if (isset($success)): ?>
