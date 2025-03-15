@@ -81,16 +81,22 @@
         <div class="col-md-4">
             <div class="dashboard-card" onclick="loadSubjects(1001)">
                 <h5>Department: MCA</h5>
+                <p>Total IA Marks Updated: <strong>320</strong></p>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#iaMarksModal">View IA Marks</button>
             </div>
         </div>
         <div class="col-md-4">
             <div class="dashboard-card" onclick="loadSubjects(1002)">
                 <h5>Department: MBA</h5>
+                <p>Total IA Marks Updated: <strong>320</strong></p>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#iaMarksModal">View IA Marks</button>
             </div>
         </div>
         <div class="col-md-4">
             <div class="dashboard-card" onclick="loadSubjects(1006)">
                 <h5>Department: Mechanical</h5>
+                <p>Total IA Marks Updated: <strong>320</strong></p>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#iaMarksModal">View IA Marks</button>
             </div>
         </div>
     </div>
@@ -98,6 +104,44 @@
     <div class="mt-4" id="subjects-container">
         <h4>Subjects</h4>
     </div>
+      <!-- IA Marks Modal -->
+     
+<div class="modal fade" id="iaMarksModal" tabindex="-1" aria-labelledby="iaMarksModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="iaMarksModalLabel">IA Marks for MCA</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <strong>Data Structures</strong><br>
+                        Faculty: Prof. John Doe<br>
+                        Updated: <span class="text-success">120</span> IA Marks<br>
+                        Pending: <span class="text-danger">0</span>
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Algorithms</strong><br>
+                        Faculty: Dr. Jane Smith<br>
+                        Updated: <span class="text-success">110</span> IA Marks<br>
+                        Pending: <span class="text-danger">10</span>
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Database Management</strong><br>
+                        Faculty: Prof. Robert Brown<br>
+                        Updated: <span class="text-success">90</span> IA Marks<br>
+                        Pending: <span class="text-danger">30</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </div>
 
 
